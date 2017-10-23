@@ -1,3 +1,11 @@
+Autoloading Standard
+====================
+
+> **Deprecated** - As of 2014-10-21 PSR-0 has been marked as deprecated. [PSR-4] is now recommended
+as an alternative.
+
+[PSR-4]: http://www.php-fig.org/psr/psr-4/
+
 The following describes the mandatory requirements that must be adhered
 to for autoloader interoperability.
 
@@ -13,7 +21,7 @@ Mandatory
 * Each `_` character in the CLASS NAME is converted to a
   `DIRECTORY_SEPARATOR`. The `_` character has no special meaning in the
   namespace.
-* The fully-qualified namespace and class is suffixed with `.php` when
+* The fully-qualified namespace and class are suffixed with `.php` when
   loading from the file system.
 * Alphabetic characters in vendor names, namespaces, and class names may
   be of any combination of lower case and upper case.
@@ -42,7 +50,8 @@ Example Implementation
 
 Below is an example function to simply demonstrate how the above
 proposed standards are autoloaded.
-```php
+
+~~~php
 <?php
 
 function autoload($className)
@@ -59,7 +68,8 @@ function autoload($className)
 
     require $fileName;
 }
-```
+spl_autoload_register('autoload');
+~~~
 
 SplClassLoader Implementation
 -----------------------------

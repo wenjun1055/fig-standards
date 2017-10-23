@@ -1,5 +1,4 @@
-Basic Coding Standard
-=====================
+# Basic Coding Standard
 
 This section of the standard comprises what should be considered the standard
 coding elements that are required to ensure a high level of technical
@@ -7,14 +6,14 @@ interoperability between shared PHP code.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [RFC 2119][].
+interpreted as described in [RFC 2119].
 
 [RFC 2119]: http://www.ietf.org/rfc/rfc2119.txt
 [PSR-0]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md
+[PSR-4]: https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md
 
 
-1. Overview
------------
+## 1. Overview
 
 - Files MUST use only `<?php` and `<?=` tags.
 
@@ -24,7 +23,7 @@ interpreted as described in [RFC 2119][].
   *or* cause side-effects (e.g. generate output, change .ini settings, etc.)
   but SHOULD NOT do both.
 
-- Namespaces and classes MUST follow [PSR-0][].
+- Namespaces and classes MUST follow an "autoloading" PSR: [[PSR-0], [PSR-4]].
 
 - Class names MUST be declared in `StudlyCaps`.
 
@@ -33,8 +32,7 @@ interpreted as described in [RFC 2119][].
 - Method names MUST be declared in `camelCase`.
 
 
-2. Files
---------
+## 2. Files
 
 ### 2.1. PHP Tags
 
@@ -63,7 +61,7 @@ reading from or writing to a file, and so on.
 The following is an example of a file with both declarations and side effects;
 i.e, an example of what to avoid:
 
-```php
+~~~php
 <?php
 // side effect: change ini settings
 ini_set('error_reporting', E_ALL);
@@ -79,12 +77,12 @@ function foo()
 {
     // function body
 }
-```
+~~~
 
 The following example is of a file that contains declarations without side
 effects; i.e., an example of what to emulate:
 
-```php
+~~~php
 <?php
 // declaration
 function foo()
@@ -99,13 +97,12 @@ if (! function_exists('bar')) {
         // function body
     }
 }
-```
+~~~
 
 
-3. Namespace and Class Names
-----------------------------
+## 3. Namespace and Class Names
 
-Namespaces and classes MUST follow [PSR-0][].
+Namespaces and classes MUST follow an "autoloading" PSR: [[PSR-0], [PSR-4]].
 
 This means each class is in a file by itself, and is in a namespace of at
 least one level: a top-level vendor name.
@@ -116,7 +113,7 @@ Code written for PHP 5.3 and after MUST use formal namespaces.
 
 For example:
 
-```php
+~~~php
 <?php
 // PHP 5.3 and later:
 namespace Vendor\Model;
@@ -124,21 +121,20 @@ namespace Vendor\Model;
 class Foo
 {
 }
-```
+~~~
 
 Code written for 5.2.x and before SHOULD use the pseudo-namespacing convention
 of `Vendor_` prefixes on class names.
 
-```php
+~~~php
 <?php
 // PHP 5.2.x and earlier:
 class Vendor_Model_Foo
 {
 }
-```
+~~~
 
-4. Class Constants, Properties, and Methods
--------------------------------------------
+## 4. Class Constants, Properties, and Methods
 
 The term "class" refers to all classes, interfaces, and traits.
 
@@ -147,7 +143,7 @@ The term "class" refers to all classes, interfaces, and traits.
 Class constants MUST be declared in all upper case with underscore separators.
 For example:
 
-```php
+~~~php
 <?php
 namespace Vendor\Model;
 
@@ -156,7 +152,7 @@ class Foo
     const VERSION = '1.0';
     const DATE_APPROVED = '2012-06-01';
 }
-```
+~~~
 
 ### 4.2. Properties
 

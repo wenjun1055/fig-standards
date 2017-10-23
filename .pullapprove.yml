@@ -1,0 +1,61 @@
+version: 2
+group_defaults:
+    approve_by_comment:
+        enabled: true
+        approve_regex: '^:\+1:'
+    reset_on_push:
+        enabled: false
+    github_reviews:
+        enabled: true
+    author_approval:
+        ignored: true
+groups:
+    secretaries-tag:
+        required: 1
+        teams:
+            - secretaries
+        conditions:
+            labels:
+                - "Internal: Bylaw or Admin Change"
+                - "New PSR"
+    secretaries-files:
+        required: 1
+        teams:
+            - secretaries
+        conditions:
+            files:
+                exclude:
+                    - "proposed/*"
+    abandoned-psrs:
+        required: 1
+        teams:
+            - secretaries
+        conditions:
+            files:
+                - "proposed/security-*"
+                - "proposed/event-manager*"
+                - "proposed/phpdoc*"
+    http:
+        required: 1
+        teams:
+            - psr-15
+        conditions:
+            labels:
+                - "HTTP"
+            files:
+                - "proposed/http-factory/*"
+                - "proposed/http-middleware/*"
+    cs-extended:
+        required: 1
+        teams:
+            - psr-12
+        conditions:
+            files:
+                - "proposed/extended-coding-style-guide*"
+    http-client:
+        required: 1
+        teams:
+            - psr-18
+        conditions:
+            files:
+                - "proposed/http-client/*"
